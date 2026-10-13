@@ -20,7 +20,6 @@ import pytest
 from expenses.calculs import (
     calculer_soldes,
     parts_egales,
-    repartir,
     simplifier,
 )
 
