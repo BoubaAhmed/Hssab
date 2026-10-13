@@ -7,7 +7,7 @@ export default function App() {
     fetch('/api/health/')
       .then((r) => r.json())
       .then((d) => setStatus(d.status))
-      .catch(() => setStatus('erreur'))
+      .catch((err) => {setStatus('erreur'); console.log("erreur :", err)})
   }, [])
 
   return (
