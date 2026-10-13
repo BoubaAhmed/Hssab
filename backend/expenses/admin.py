@@ -1,3 +1,5 @@
 from django.contrib import admin
 
-# Register your models here.
+from .models import Expense, ExpenseShare, Group, Member, Settlement
+
+admin.site.register([Group, Member, Expense, ExpenseShare, Settlement])
