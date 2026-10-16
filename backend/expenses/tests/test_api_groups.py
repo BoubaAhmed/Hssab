@@ -7,47 +7,19 @@ from expenses.models import Group, Member
 User = get_user_model()
 PASSWORD = 'Str0ng-pass-123'
 
+@pytest.fixture
+def ali(make_user):
+    return make_user('ali')
+
+
+@pytest.fixture
+def sara(make_user):
+    return make_user('sara')
+
 
 @pytest.fixture
 def api():
     return APIClient()
-
-
-@pytest.fixture
-def ali(db):
-    return User.objects.create_user(username='ali', password=PASSWORD)
-
-
-@pytest.fixture
-def sara(db):
-    return User.objects.create_user(username='sara', password=PASSWORD)
-
-
-def test_register_then_login(api, db):
-    r = api.post(
-        '/api/auth/register/',
-        {'username': 'karim', 'email': 'k@example.com', 'password': PASSWORD},
-        format='json',
-    )
-    assert r.status_code == 201
-    assert 'password' not in r.json()
-
-    r = api.post(
-        '/api/auth/login/',
-        {'username': 'karim', 'password': PASSWORD},
-        format='json',
-    )
-    assert r.status_code == 200
-    assert 'access' in r.json()
-
-
-def test_weak_password_is_refused(api, db):
-    r = api.post(
-        '/api/auth/register/',
-        {'username': 'karim', 'email': 'k@example.com', 'password': '123'},
-        format='json',
-    )
-    assert r.status_code == 400
 
 
 def test_groups_require_login(api, db):

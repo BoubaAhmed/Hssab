@@ -8,6 +8,7 @@ from rest_framework.views import APIView
 from .models import Group, Member
 from .serializers import GroupSerializer
 
+
 class MyGroupsMixin:
     """Only groups the current user belongs to. Anyone else gets a 404."""
 
