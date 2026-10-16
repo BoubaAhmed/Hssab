@@ -20,8 +20,6 @@ from django.http import JsonResponse
 from django.urls import include, path
 from rest_framework_simplejwt.views import TokenObtainPairView, TokenRefreshView
 
-from expenses.views import RegisterView
-
 
 def health(request):
     return JsonResponse({'status': 'ok'})
@@ -30,8 +28,9 @@ def health(request):
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/health/', health),
-    path('api/auth/register/', RegisterView.as_view()),
-    path('api/auth/login/', TokenObtainPairView.as_view()),
-    path('api/auth/refresh/', TokenRefreshView.as_view()),
+    # path('api/auth/register/', RegisterView.as_view()),
+    # path('api/auth/login/', TokenObtainPairView.as_view()),
+    # path('api/auth/refresh/', TokenRefreshView.as_view()),
     path('api/', include('expenses.urls')),
+    path('api/auth/', include('accounts.urls')),
 ]
