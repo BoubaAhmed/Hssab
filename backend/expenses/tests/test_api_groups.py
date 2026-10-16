@@ -1,11 +1,8 @@
 import pytest
-from django.contrib.auth import get_user_model
 from rest_framework.test import APIClient
 
 from expenses.models import Group, Member
 
-User = get_user_model()
-PASSWORD = 'Str0ng-pass-123'
 
 @pytest.fixture
 def ali(make_user):
